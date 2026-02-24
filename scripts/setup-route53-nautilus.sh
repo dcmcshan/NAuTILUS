@@ -11,11 +11,11 @@ SUBDOMAIN="${SUBDOMAIN:-nautilus}"
 PARENT_DOMAIN="${PARENT_DOMAIN:-terpedia.com}"
 FQDN="${SUBDOMAIN}.${PARENT_DOMAIN}"
 
-# GitHub Pages target for project sites: owner.github.io
+# GitHub Pages target for project sites: owner.github.io (use repo owner so org repos get org.github.io)
 if [[ -n "$GITHUB_OWNER" ]]; then
   TARGET="$GITHUB_OWNER.github.io"
 else
-  TARGET="$(gh api user -q .login 2>/dev/null || true).github.io"
+  TARGET="$(gh repo view --json owner -q .owner.login 2>/dev/null || gh api user -q .login 2>/dev/null || true).github.io"
 fi
 if [[ -z "$TARGET" ]]; then
   echo "Set GITHUB_OWNER (e.g. your GitHub username or org), or run 'gh auth login'"
