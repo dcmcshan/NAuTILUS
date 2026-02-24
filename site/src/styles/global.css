@@ -1,0 +1,39 @@
+/* NAuTILUS — accent and layout utilities */
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.flow > * + * { margin-top: 1rem; }
+.flow-lg > * + * { margin-top: 2rem; }
+
+.accent { color: var(--accent); }
+.text-muted { color: var(--text-muted); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  border-color: var(--accent-dim);
+  box-shadow: 0 0 0 1px var(--accent-dim);
+}
+
+.doc-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  color: var(--text);
+  border: 1px solid transparent;
+}
+.doc-link:hover {
+  background: var(--muted);
+  border-color: var(--border);
+  color: var(--accent);
+  text-decoration: none;
+}

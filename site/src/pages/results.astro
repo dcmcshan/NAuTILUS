@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL;
+
+const outputs = [
+  'Ranked terpene–protein interaction matrix (ML-based affinity ranking)',
+  'Docking validation subset (poses, scores, contact residues)',
+  'Family enrichment analysis',
+  'Polypharmacology maps',
+  'Terpedia/Neptune integration (kb.terpedia.com port + NAuTILUS capture)',
+  'Whitepaper-ready figures',
+];
+---
+
+<BaseLayout title="Results" description="NAuTILUS results and atlas outputs — interaction matrices, docking validation, enrichment.">
+  <Header />
+  <main class="page">
+    <div class="container">
+      <h1 class="page-title">Results</h1>
+      <p class="lead">
+        Results and atlas outputs will be published here as the pipeline runs.
+      </p>
+
+      <section class="outputs">
+        <h2>Planned outputs</h2>
+        <ul>
+          {outputs.map((o) => (
+            <li>{o}</li>
+          ))}
+        </ul>
+      </section>
+
+      <p class="text-muted note">
+        Last updated: pipeline not yet run. This page will be updated with links to datasets, figures, and Neptune/SPARQL access as deliverables are completed.
+      </p>
+
+      <a href={base ? `${base}/` : '/'} class="back">← Back to proposal</a>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page {
+    padding: 3rem 0 4rem;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .page-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+  }
+  .lead {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin: 0 0 2rem;
+  }
+  .outputs {
+    margin-bottom: 2rem;
+  }
+  .outputs h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+  }
+  .outputs ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: var(--text-muted);
+  }
+  .outputs li { margin-bottom: 0.35rem; }
+  .note { font-size: 0.9rem; margin-bottom: 2rem; }
+  .back {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .back:hover { text-decoration: none; }
+</style>

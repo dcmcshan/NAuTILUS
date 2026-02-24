@@ -13,13 +13,11 @@
    - Sets custom domain to **nautilus.terpedia.com** and enforces HTTPS.
 
 2. **Point DNS at GitHub (Route 53)**  
-   From repo root:
+   The **terpedia.com** zone is managed with the **dan-syzygyx** AWS profile. From repo root:
    ```bash
    chmod +x scripts/setup-route53-nautilus.sh
-   ./scripts/setup-route53-nautilus.sh
+   AWS_PROFILE=dan-syzygyx ./scripts/setup-route53-nautilus.sh
    ```
-   - Creates CNAME **nautilus.terpedia.com** → **&lt;owner&gt;.github.io** in the **terpedia.com** hosted zone.
-   - Requires AWS CLI and a Route 53 hosted zone for terpedia.com.
-   - Optional: `GITHUB_OWNER=YourOrg ./scripts/setup-route53-nautilus.sh`
+   - Creates CNAME **nautilus.terpedia.com** → **Terpedia.github.io** in the **terpedia.com** hosted zone.
 
 Manual Route 53 steps and troubleshooting: [docs/setup/ROUTE53-NAUTILUS.md](../docs/setup/ROUTE53-NAUTILUS.md).

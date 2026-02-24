@@ -6,28 +6,24 @@ Point **nautilus.terpedia.com** to your GitHub Pages site using AWS Route 53.
 
 ## Prerequisites
 
-- **terpedia.com** must be in a Route 53 hosted zone (you have the zone ID).
-- AWS CLI configured: `aws sts get-caller-identity` works.
+- **terpedia.com** must be in a Route 53 hosted zone (managed with profile **dan-syzygyx**).
+- AWS CLI configured: `AWS_PROFILE=dan-syzygyx aws sts get-caller-identity` works.
 - GitHub Pages is enabled for the NAuTILUS repo and custom domain is set to **nautilus.terpedia.com** in repo **Settings → Pages**.
 
 ---
 
 ## Option 1: Script (recommended)
 
-From repo root:
+From repo root. The terpedia.com zone is managed with the **dan-syzygyx** profile:
 
 ```bash
-# Use default GitHub user from gh
-./scripts/setup-route53-nautilus.sh
-
-# Or set org/owner explicitly
-GITHUB_OWNER=YourOrg ./scripts/setup-route53-nautilus.sh
+AWS_PROFILE=dan-syzygyx ./scripts/setup-route53-nautilus.sh
 ```
 
 The script creates a **CNAME** record:
 
 - **Name:** nautilus.terpedia.com  
-- **Value:** `<owner>.github.io`  
+- **Value:** Terpedia.github.io  
 - **TTL:** 300  
 
 ---
@@ -38,7 +34,7 @@ The script creates a **CNAME** record:
 2. **Create record**
    - Record name: `nautilus`
    - Record type: **CNAME**
-   - Value: `YOUR_GITHUB_USERNAME.github.io` (or `YourOrg.github.io` for an org repo)
+   - Value: `Terpedia.github.io`
    - TTL: 300
 3. **Create records**.
 
@@ -47,14 +43,14 @@ The script creates a **CNAME** record:
 ## Option 3: AWS CLI by hand
 
 ```bash
-# Set your GitHub username or org
-GITHUB_OWNER=your-username
+# Use the profile that has the terpedia.com zone (dan-syzygyx)
+export AWS_PROFILE=dan-syzygyx
 
 # List hosted zones and copy the Id for terpedia.com (e.g. Z123...)
 aws route53 list-hosted-zones --query "HostedZones[?Name=='terpedia.com.']"
 
-# Create change batch file change.json:
-cat > change.json << EOF
+# Create change batch file change.json (target: Terpedia.github.io):
+cat > change.json << 'EOF'
 {
   "Changes": [{
     "Action": "UPSERT",
@@ -62,7 +58,7 @@ cat > change.json << EOF
       "Name": "nautilus.terpedia.com.",
       "Type": "CNAME",
       "TTL": 300,
-      "ResourceRecords": [{"Value": "${GITHUB_OWNER}.github.io."}]
+      "ResourceRecords": [{"Value": "Terpedia.github.io."}]
     }
   }]
 }

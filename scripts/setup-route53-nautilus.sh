@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # Create Route 53 CNAME record: nautilus.terpedia.com -> <owner>.github.io
-# Requires: AWS CLI configured (aws route53 list-hosted-zones, change-resource-record-sets)
-# Run from repo root: ./scripts/setup-route53-nautilus.sh
-# Optional: GITHUB_OWNER=YourOrg ./scripts/setup-route53-nautilus.sh
+# Zone terpedia.com is managed with profile dan-syzygyx.
+# Run from repo root: AWS_PROFILE=dan-syzygyx ./scripts/setup-route53-nautilus.sh
 
 set -e
 cd "$(dirname "$0")/.."
@@ -24,7 +23,7 @@ fi
 
 echo "=== Route 53: $FQDN -> $TARGET ==="
 
-# Find hosted zone for terpedia.com
+# Find hosted zone for PARENT_DOMAIN (e.g. terpedia.com; use AWS_PROFILE=dan-syzygyx)
 ZONE_ID=$(aws route53 list-hosted-zones --query "HostedZones[?Name=='${PARENT_DOMAIN}.'].Id" --output text 2>/dev/null | head -1)
 if [[ -z "$ZONE_ID" ]]; then
   echo "No Route 53 hosted zone found for $PARENT_DOMAIN. Create one in the AWS console or set PARENT_DOMAIN."

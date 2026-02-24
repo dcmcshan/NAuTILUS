@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
+
+const docs = [
+  { slug: '01-Research-Methods-Design-Document', title: 'Research Methods Design', desc: 'Full methodology, scope, pipeline, validation, tiers' },
+  { slug: '02-Executive-Summary', title: 'Executive Summary', desc: '2-page brief for Inception, grants, partners' },
+  { slug: '03-System-Diagram', title: 'System Diagram', desc: 'Pipeline & component diagrams (Mermaid)' },
+  { slug: '04-Compute-Sizing-Appendix', title: 'Compute Sizing', desc: 'AWS GPU sizing, cost estimates, BioNeMo notes' },
+  { slug: '05-Gantt-6-Week-Execution-Plan', title: '6-Week Gantt', desc: 'Timeline, milestones, dependencies' },
+  { slug: '06-Neptune-SPARQL-Port', title: 'Neptune & SPARQL Port', desc: 'kb.terpedia.com → Neptune; NAuTILUS capture' },
+];
+---
+
+<BaseLayout title="NAuTILUS" description="Neural Atlas for Terpene Interaction & Large-Scale Unified Screening — GPU-accelerated polypharmacology inference for terpenes.">
+  <Header />
+  <main class="hero">
+    <div class="container">
+      <p class="tagline">Neural Atlas for Terpene Interaction & Large-Scale Unified Screening</p>
+      <h1 class="title">NAuTILUS</h1>
+      <p class="lead">
+        A GPU-accelerated, graph-integrated <strong class="accent">polypharmacology inference engine</strong> for terpenes — predicting and ranking terpene–protein interactions across the human pocketome, with docking validation and Terpedia/Neptune integration.
+      </p>
+    </div>
+  </main>
+
+  <section class="section proposal">
+    <div class="container">
+      <h2 class="section-title">Research Proposal</h2>
+      <div class="doc-grid">
+        {docs.map((d) => (
+          <a href={`${base}/${d.slug}/`} class="card doc-link">
+            <span class="doc-title">{d.title}</span>
+            <span class="doc-desc">{d.desc}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section results-cta">
+    <div class="container">
+      <h2 class="section-title">Results</h2>
+      <p class="text-muted">
+        Interaction matrices, docking validation, enrichment, and Terpedia/Neptune integration — updated as the pipeline runs.
+      </p>
+      <a href={`${base}/results/`} class="button">View results →</a>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 4rem 0 3rem;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 100%;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(34, 211, 238, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+  }
+  .tagline {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 0 0 0.5rem;
+  }
+  .title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem;
+    line-height: 1.1;
+  }
+  .lead {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 42rem;
+    margin: 0;
+  }
+  .lead strong { color: var(--text); }
+
+  .section {
+    padding: 2.5rem 0;
+  }
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 1.25rem;
+    color: var(--text);
+  }
+  .doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .doc-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .doc-title {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .doc-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .results-cta .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .button {
+    display: inline-block;
+    padding: 0.6rem 1.25rem;
+    background: var(--accent-dim);
+    color: var(--bg);
+    font-weight: 600;
+    border-radius: var(--radius);
+    transition: background 0.2s, color 0.2s;
+  }
+  .button:hover {
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+  }
+</style>

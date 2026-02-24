@@ -9,17 +9,17 @@
 ### What you need to do
 
 1. **Route 53**  
-   In the AWS account that has the **terpedia.com** hosted zone, create a CNAME:
+   The **terpedia.com** zone is managed with the **dan-syzygyx** AWS profile. Create the CNAME:
    - **Name:** nautilus.terpedia.com (or `nautilus` in the terpedia.com zone)
    - **Value:** Terpedia.github.io  
 
    From this repo:
    ```bash
-   ./scripts/setup-route53-nautilus.sh
+   AWS_PROFILE=dan-syzygyx ./scripts/setup-route53-nautilus.sh
    ```
    Or follow [ROUTE53-NAUTILUS.md](./ROUTE53-NAUTILUS.md) (console or CLI).
 
 2. **HTTPS**  
    After DNS propagates, in the repo **Settings → Pages** turn on **Enforce HTTPS** (GitHub will issue the certificate once it can verify the domain).
 
-**Note:** The repo is under the **Terpedia** org. GitHub Pages is served from **Terpedia.github.io/NAuTILUS/**. The CNAME target for nautilus.terpedia.com must be **Terpedia.github.io**. If you previously pointed DNS to a user account, re-run `./scripts/setup-route53-nautilus.sh` to update the record (it uses the repo owner automatically).
+**Note:** The repo is under the **Terpedia** org. GitHub Pages is served from **Terpedia.github.io/NAuTILUS/**. The CNAME target for nautilus.terpedia.com must be **Terpedia.github.io**. Contact: dan@syzygyx.com.

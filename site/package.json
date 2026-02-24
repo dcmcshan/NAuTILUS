@@ -1,0 +1,13 @@
+{
+  "name": "nautilus-site",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "npx astro dev",
+    "build": "npx astro build",
+    "preview": "npx astro preview"
+  },
+  "dependencies": {
+    "astro": "^4.16.0"
+  }
+}

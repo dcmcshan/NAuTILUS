@@ -25,3 +25,5 @@ Documentation for NVIDIA Inception briefing, Terpedia technical planning, prepri
 - **Technical planning:** **01** (Design Doc) + **04** (Compute) + **05** (Gantt).
 - **Whitepaper / grant appendix:** **01** plus sections from **04** and **05** as needed.  
 - **Neptune / SPARQL migration:** **06** (and §5 of **01**).
+
+**Contact:** dan@syzygyx.com

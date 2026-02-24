@@ -29,4 +29,5 @@ A GPU-accelerated, graph-integrated polypharmacology inference engine for terpen
 
 ---
 
+**Contact:** [dan@syzygyx.com](mailto:dan@syzygyx.com)  
 *Part of [Terpedia](https://terpedia.com).*
