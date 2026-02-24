@@ -1,11 +1,11 @@
 ---
 const base = import.meta.env.BASE_URL;
+const logoSrc = base ? `${base}/nautilus-logo.png` : '/nautilus-logo.png';
 ---
 <header class="site-header">
   <div class="container">
     <a href={base ? `${base}/` : '/'} class="logo">
-      <span class="logo-mark">◐</span>
-      <span class="logo-text">NAuTILUS</span>
+      <img src={logoSrc} alt="NAuTILUS" width="140" height="40" class="logo-img" />
     </a>
     <nav class="nav">
       <a href={base ? `${base}/` : '/'}>Proposal</a>
@@ -37,17 +37,14 @@ const base = import.meta.env.BASE_URL;
   .logo {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
     color: var(--text);
-    font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: 0.02em;
   }
-  .logo:hover { color: var(--accent); text-decoration: none; }
-  .logo-mark {
-    color: var(--accent);
-    font-size: 1.5rem;
-    line-height: 1;
+  .logo:hover { text-decoration: none; opacity: 0.9; }
+  .logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
+    object-fit: contain;
   }
   .nav {
     display: flex;

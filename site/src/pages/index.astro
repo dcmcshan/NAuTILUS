@@ -20,8 +20,8 @@ const docs = [
   <Header />
   <main class="hero">
     <div class="container">
+      <img src={base ? `${base}/nautilus-logo.png` : '/nautilus-logo.png'} alt="NAuTILUS" class="hero-logo" width="320" height="120" />
       <p class="tagline">Neural Atlas for Terpene Interaction & Large-Scale Unified Screening</p>
-      <h1 class="title">NAuTILUS</h1>
       <p class="lead">
         A GPU-accelerated, graph-integrated <strong class="accent">polypharmacology inference engine</strong> for terpenes — predicting and ranking terpene–protein interactions across the human pocketome, with docking validation and Terpedia/Neptune integration.
       </p>
@@ -84,12 +84,12 @@ const docs = [
     color: var(--accent);
     margin: 0 0 0.5rem;
   }
-  .title {
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin: 0 0 1rem;
-    line-height: 1.1;
+  .hero-logo {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    margin: 0 0 1.5rem;
+    display: block;
   }
   .lead {
     font-size: 1.15rem;
