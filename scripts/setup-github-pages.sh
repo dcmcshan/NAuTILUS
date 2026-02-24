@@ -72,7 +72,8 @@ cat > "$PUT_JSON" << EOF
   "https_enforced": true
 }
 EOF
-gh api "repos/$OWNER/$REPO_NAME/pages" -X PUT --input "$PUT_JSON"
+# PUT may return 404 "certificate does not exist yet" until DNS points to GitHub; then re-run or enable HTTPS in Settings → Pages
+gh api "repos/$OWNER/$REPO_NAME/pages" -X PUT --input "$PUT_JSON" 2>/dev/null || true
 rm -f "$PUT_JSON"
 
 echo ""
