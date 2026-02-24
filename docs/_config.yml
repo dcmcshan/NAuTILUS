@@ -1,0 +1,7 @@
+# GitHub Pages / Jekyll config for NAuTILUS
+title: NAuTILUS
+description: Neural Atlas for Terpene Interaction & Large-Scale Unified Screening
+repository: NAuTILUS
+
+markdown: kramdown
+highlighter: rouge
